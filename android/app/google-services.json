@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "278269227039",
+    "project_id": "hooked-c6b46",
+    "storage_bucket": "hooked-c6b46.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278269227039:android:2cb459ae1b2ad425a8652a",
+        "android_client_info": {
+          "package_name": "com.davidfanaro.hooked"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "278269227039-uguqngi2fiuu608tv21rmppsupudm751.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUoA4OIYUg8akAKCaHcQoS5DWl4dUCl6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "278269227039-uguqngi2fiuu608tv21rmppsupudm751.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "278269227039-53du74qcn4f9gebronhu99j13fbb64s9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.davidfanaro.hooked"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
