@@ -59,12 +59,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       FirebaseAuth.instance.currentUser.sendEmailVerification();
-      HookedUser.createUser(FirebaseAuth.instance.currentUser.uid, firstName, lastName);
-      // db.collection("users").add({
-      //   "FirstName": firstName,
-      //   "LastName": lastName,
-      //   "id": FirebaseAuth.instance.currentUser.uid
-      // });
+      HookedUser.createUser(
+          FirebaseAuth.instance.currentUser.uid, firstName, lastName);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
@@ -99,136 +95,135 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
           body: SafeArea(
             child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                  
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "First Name",
-                        style: SignUpScreen.txtStyle,
-                      ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "First Name",
+                      style: SignUpScreen.txtStyle,
                     ),
-                    Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextField(
-            controller: firstNameController,
-            decoration: SignUpScreen.usernameStyle,
-            keyboardType: TextInputType.emailAddress,
-            autocorrect: false,
-            onSubmitted: canSubmit
-                ? (value) {
-                    handleSubmit(context);
-                  }
-                : null,
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "Last Name",
-                        style: SignUpScreen.txtStyle,
-                      ),
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextField(
-            controller: lastNameController,
-            decoration: SignUpScreen.usernameStyle,
-            keyboardType: TextInputType.emailAddress,
-            autocorrect: false,
-            onSubmitted: canSubmit
-                ? (value) {
-                    handleSubmit(context);
-                  }
-                : null,
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "Email",
-                        style: SignUpScreen.txtStyle,
-                      ),
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextField(
-            controller: emailController,
-            decoration: SignUpScreen.usernameStyle,
-            keyboardType: TextInputType.emailAddress,
-            autocorrect: false,
-            onSubmitted: canSubmit
-                ? (value) {
-                    handleSubmit(context);
-                  }
-                : null,
-            onChanged: (value) {
-              print(vaildEmail);
-              if (validateEmail(value)) {
-                setState(() {
-                  vaildEmail = true;
-                });
-              } else {
-                setState(() {
-                  vaildEmail = false;
-                });
-              }
-            },
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "Password",
-                        style: SignUpScreen.txtStyle,
-                      ),
-                    ),
-                    Padding(
+                  ),
+                  Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
-                        onChanged: (value) {
-            if (validatePassword(value)) {
-              setState(() {
-                vaildPassword = true;
-              });
-            } else {
-              setState(() {
-                vaildPassword = false;
-              });
-            }
-                        },
-                        onSubmitted: canSubmit
-              ? (value) {
-                  handleSubmit(context);
-                }
-              : null,
-                        controller: passwordController,
-                        obscureText: true,
+                        controller: firstNameController,
                         decoration: SignUpScreen.usernameStyle,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
+                        keyboardType: TextInputType.emailAddress,
+                        autocorrect: false,
+                        onSubmitted: canSubmit
+                            ? (value) {
+                                handleSubmit(context);
+                              }
+                            : null,
+                      )),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "Last Name",
+                      style: SignUpScreen.txtStyle,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      children: [
-                        RaisedButton(
-            onPressed: canSubmit
-                ? () {
-                    handleSubmit(context);
-                  }
-                : null,
-            disabledColor: Colors.grey,
-            color: Colors.green,
-            child: Text(
-              vaildEmail && vaildPassword ? "Create Account" : "",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        controller: lastNameController,
+                        decoration: SignUpScreen.usernameStyle,
+                        keyboardType: TextInputType.emailAddress,
+                        autocorrect: false,
+                        onSubmitted: canSubmit
+                            ? (value) {
+                                handleSubmit(context);
+                              }
+                            : null,
+                      )),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "Email",
+                      style: SignUpScreen.txtStyle,
+                    ),
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        controller: emailController,
+                        decoration: SignUpScreen.usernameStyle,
+                        keyboardType: TextInputType.emailAddress,
+                        autocorrect: false,
+                        onSubmitted: canSubmit
+                            ? (value) {
+                                handleSubmit(context);
+                              }
+                            : null,
+                        onChanged: (value) {
+                          print(vaildEmail);
+                          if (validateEmail(value)) {
+                            setState(() {
+                              vaildEmail = true;
+                            });
+                          } else {
+                            setState(() {
+                              vaildEmail = false;
+                            });
+                          }
+                        },
+                      )),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "Password",
+                      style: SignUpScreen.txtStyle,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      onChanged: (value) {
+                        if (validatePassword(value)) {
+                          setState(() {
+                            vaildPassword = true;
+                          });
+                        } else {
+                          setState(() {
+                            vaildPassword = false;
+                          });
+                        }
+                      },
+                      onSubmitted: canSubmit
+                          ? (value) {
+                              handleSubmit(context);
+                            }
+                          : null,
+                      controller: passwordController,
+                      obscureText: true,
+                      decoration: SignUpScreen.usernameStyle,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    children: [
+                      RaisedButton(
+                        onPressed: canSubmit
+                            ? () {
+                                handleSubmit(context);
+                              }
+                            : null,
+                        disabledColor: Colors.grey,
+                        color: Colors.green,
+                        child: Text(
+                          vaildEmail && vaildPassword ? "Create Account" : "",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
-                      ],
-                    )
-                  ],
-                ),
+                      ),
+                    ],
+                  )
+                ],
               ),
+            ),
           ),
         ),
         onTap: () => FocusManager.instance.primaryFocus.unfocus(),

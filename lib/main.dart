@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:Hooked/Screens/LoadingScreen.dart';
+import 'package:Hooked/Screens/BasicUI/LoadingScreen.dart';
 import 'package:Hooked/Screens/Login/LoginScreen.dart';
 import 'package:Hooked/Screens/MainScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -64,18 +64,8 @@ class _AppState extends State<App> {
 }
 
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-
- 
-  
-
-
   @override
   Widget build(BuildContext context) {
     

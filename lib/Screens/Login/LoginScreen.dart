@@ -1,4 +1,5 @@
 import 'package:Hooked/Screens/SignUp/SignUpScreen.dart';
+import 'package:Hooked/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -55,6 +56,15 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+          if (FirebaseAuth.instance.currentUser != null){
+            try {
+              HookedUser user = await HookedUser.getUserbyId(FirebaseAuth.instance.currentUser.uid);
+            } catch (e) {
+              print("Error error getting user data.");
+            }
+            
+             
+          }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
@@ -96,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: GestureDetector(
         child: Scaffold(
           appBar: AppBar(
-            title: Text("Login"),
+            title: Text("Login",),
           ),
           body: SafeArea(
             child: Column(
@@ -128,13 +138,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         ? (value) {
                             String email = emailController.text;
                             String password = passwordController.text;
-                            // showDialog(
-                            //     context: context,
-                            //     child: AlertDialog(
-                            //       title: Text("email: $email"),
-                            //       content: Text("Password: $password"),
-                            //     ));
-
                             loginHookedAccount(email, password, context);
                           }
                         : null,
@@ -196,12 +199,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           ? () {
                               String email = emailController.text;
                               String password = passwordController.text;
-                              // showDialog(
-                              //     context: context,
-                              //     child: AlertDialog(
-                              //       title: Text("email: $email"),
-                              //       content: Text("Password: $password"),
-                              //     ));
+
+                              
 
                               loginHookedAccount(email, password, context);
                             }
