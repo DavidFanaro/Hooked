@@ -3,8 +3,8 @@
 Fishing Club app
 
 #Todos
-- [] Auth
+- [x] Auth
 - [] Clubs
-- [] Club Posting
-  - [] Main Post
-  - [] Pictures
+- [x] Club Posting
+  - [x] Main Post
+  - [x] Pictures
